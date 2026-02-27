@@ -1,34 +1,33 @@
 '''
-Docstring for schemas.schema_auto
+Docstring for schemas.schema_vehiculo
 '''
-
-from pydantic import BaseModel
+from typing import Optional
 from datetime import datetime
+from pydantic import BaseModel
 
-class AutoBase(BaseModel):
-    '''Esquema para el modelo de auto'''
-    nombre :str
-    user_id:int
-    modelo:str
-    placa:str
-    serie:str
-    color:str
-    tipo:str
-    anio:int
-    estado:bool = True
-    fecha_registro:datetime
-    fecha_actualizacion:datetime
-    marca : str
-
-class AutoCreate(AutoBase):
-    '''Esquema para crear un nuevo autpo'''
+class VehiculoBase(BaseModel):
+    '''Clase para modelar los campos de tabla Vehiculo'''
+    usuario_Id: int
+    placa: str
+    modelo: str
+    serie: str
+    color: str
+    tipo: str
+    anio: int
+    estado: bool
+    fecha_registro: datetime
+    fecha_actualizacion: datetime
+# pylint: disable=too-few-public-methods, unnecessary-pass
+class VehiculoCreate(VehiculoBase):
+    '''Clase para crear un Vehiculo basado en la tabla Vehiculo'''
     pass
-class AutoUpdate(AutoBase):
-    '''Esquema para actualizar un auto existente'''
+class VehiculoUpdate(VehiculoBase):
+    '''Clase para actualizar un Vehiculo basado en la tabla Vehiculo'''
     pass
-class Auto(AutoBase):
-    '''Esquema para representar un auto en la base de datos'''
-    id: int
 
+class Vehiculo(VehiculoBase):
+    '''Clase para realizar operaciones por ID en tabla Vehiculo'''
+    Id: int
     class Config:
-        orm_mode = True
+        '''Utilizar el orm para ejecutar las funcionalidades'''
+        orm_mode =True

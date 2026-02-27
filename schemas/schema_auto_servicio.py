@@ -1,32 +1,26 @@
-'''
-Docstring for schemas.schema_rol
-'''
-
+'''Docstring for schemas.schema_usuario_vehiculo_servicio'''
+from datetime import datetime, date, time
 from pydantic import BaseModel
-from datetime import datetime
 
+class UsuarioVehiculoServicioBase(BaseModel):
+    vehiculo_Id: int
+    cajero_Id: int
+    operativo_Id: int
+    servicio_Id: int
+    fecha: date
+    hora: time
+    estatus: str
+    estado: bool
+    fecha_registro: datetime
+    fecha_actualizacion: datetime
 
-class Auto_ServicioBase(BaseModel):
-    '''Esquema base para los autos de servicio'''
-    auto_id:int
-    cajero_id:int
-    operador_id:int
-    servicio_id:int
-    fecha:datetime
-    status:str
-    estado:bool = True
-    fecha_registro:datetime
-    fecha_actualizacion:datetime
-
-class Auto_ServicioCreate(Auto_ServicioBase):
-    '''Esquema para crear un nuevo auto de servicio'''
+class UsuarioVehiculoServicioCreate(UsuarioVehiculoServicioBase):
     pass
-class Auto_ServicioUpdate(Auto_ServicioBase):
-    '''Esquema para actualizar un auto existente'''
-    pass
-class Auto_Servicio(Auto_ServicioBase):
-    '''Esquema para representar un auto de servicio en la base de datos'''
-    id: int
 
+class UsuarioVehiculoServicioUpdate(UsuarioVehiculoServicioBase):
+    pass
+
+class UsuarioVehiculoServicio(UsuarioVehiculoServicioBase):
+    Id: int
     class Config:
-        orm_mode = True
+        from_attributes = True
